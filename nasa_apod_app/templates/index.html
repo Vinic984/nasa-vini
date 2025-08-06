@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria da NASA APOD</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: #181a20;
+            color: #f1f1f1;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px 0 32px;
+        }
+        .lang-select {
+            background: #23272f;
+            color: #f1f1f1;
+            border: none;
+            border-radius: 5px;
+            padding: 6px 12px;
+            font-size: 1em;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            padding: 32px;
+        }
+        .card {
+            background: #23272f;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+        }
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 2px solid #181a20;
+        }
+        .card-content {
+            padding: 18px;
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.25em;
+            color: #7dcfff;
+        }
+        .card p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+        .card .info {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #b0b0b0;
+        }
+        .card a {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: linear-gradient(90deg,#7dcfff,#3a8dde);
+            color: #181a20;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .card a:hover {
+            background: linear-gradient(90deg,#3a8dde,#7dcfff);
+            color: #fff;
+        }
+        .no-data {
+            text-align: center;
+            color: #888;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/detalhes" style="margin-left:24px; background:#7dcfff; color:#181a20; padding:8px 18px; border-radius:6px; text-decoration:none; font-weight:bold;">Ver mais sobre Astronomia</a>
+        <h1>Galeria de Imagens Astronômicas da NASA
+        </h1>
+        <select class="lang-select">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+        </select>
+    </header>
+    {% if apods %}
+        <div class="gallery">
+            {% for apod in apods %}
+                <div class="card">
+                    {% if apod.media_type == 'image' %}
+                        <img src="{{ apod.url }}" alt="{{ apod.title }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/600x400?text=Conteúdo+não+disponível" alt="Conteúdo não disponível">
+                    {% endif %}
+                    <div class="card-content">
+                        <h2>Título: {{ apod.title }}</h2>
+                        <p><strong>Descrição:</strong> {{ apod.explanation }}</p>
+                        <div class="info">
+                            <span><strong>Data:</strong> {{ apod.date }}</span><br>
+                            <span><strong>Autor:</strong> {{ apod.copyright if apod.copyright else 'Desconhecido' }}</span><br>
+                            <span><strong>Tipo de mídia:</strong> {{ apod.media_type }}</span><br>
+                            {% if apod.service_version %}
+                                <span><strong>Versão do serviço:</strong> {{ apod.service_version }}</span><br>
+                            {% endif %}
+                        </div>
+                        {% if apod.hdurl %}
+                            <a href="{{ apod.hdurl }}" download>Baixar Imagem em Alta Resolução</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-data">Nenhuma imagem encontrada. Verifique sua chave de API ou sua conexão com a internet.</p>
+    {% endif %}
+
+</body>
+</html>

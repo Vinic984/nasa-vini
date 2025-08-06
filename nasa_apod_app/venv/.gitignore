@@ -1,0 +1,9 @@
+# Ignorar a pasta do ambiente virtual
+venv/
+
+# Ignorar o arquivo com a chave da API
+.env
+
+# Ignorar arquivos de cache do Python
+__pycache__/
+*.pyc

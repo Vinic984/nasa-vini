@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Astronomia</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: #181a20;
+            color: #f1f1f1;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #23272f;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            padding: 32px;
+        }
+        h1 {
+            color: #7dcfff;
+            margin-bottom: 24px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        .card {
+            background: #181a20;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.04);
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 14px;
+        }
+        .card h2 {
+            color: #7dcfff;
+            font-size: 1.1em;
+            margin: 0 0 8px 0;
+        }
+        .card p {
+            font-size: 0.95em;
+            color: #e0e0e0;
+        }
+        .info-extra {
+            margin-top: 32px;
+            background: #23272f;
+            border-radius: 10px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+        .info-extra h3 {
+            color: #7dcfff;
+            margin-bottom: 12px;
+        }
+        .info-extra p {
+            color: #e0e0e0;
+            font-size: 1em;
+        }
+        .instagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .instagram a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .instagram svg {
+            width: 32px;
+            height: 32px;
+            fill: #e1306c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Imagens de Estrelas, Satélites e Astronomia</h1>
+        <div class="gallery">
+            {% if imagens_extra %}
+                {% for img in imagens_extra %}
+                <div class="card">
+                    <img src="{{ img.url }}" alt="{{ img.titulo }}" style="width:100%;height:180px;object-fit:cover;">
+                    <div class="card-content">
+                        <h2>{{ img.titulo }}</h2>
+                        <p>{{ img.descricao }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p style="color:#fff;text-align:center;">Nenhuma imagem gerada. Verifique se a variável 'imagens_extra' está sendo passada corretamente pelo Flask.</p>
+            {% endif %}
+        </div>
+        <div class="info-extra">
+            <h3>Sobre Astronomia</h3>
+            <p>Astronomia é a ciência que estuda os corpos celestes, como estrelas, planetas, galáxias, cometas e satélites, bem como os fenômenos que ocorrem fora da atmosfera da Terra. Ela busca entender a origem, evolução e estrutura do universo. Os astrônomos utilizam telescópios, sondas espaciais e satélites para observar e coletar dados sobre o cosmos. A astronomia é uma das ciências mais antigas e fascina a humanidade há milênios.</p>
+            <h3>Curiosidades</h3>
+            <p>- O Sol é uma estrela comum, mas é essencial para a vida na Terra.<br>
+            - Existem bilhões de galáxias no universo observável.<br>
+            - Satélites artificiais são usados para comunicação, navegação e pesquisa científica.<br>
+            - O maior telescópio óptico do mundo é o Gran Telescopio Canarias, na Espanha.<br>
+            - A Estação Espacial Internacional orbita a Terra a cada 90 minutos.</p>
+        </div>
+        <div class="instagram">
+            <span>Siga no Instagram:</span>
+            <a href="https://instagram.com/vini_xld" target="_blank">
+                <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-115.1 51.5-115.1 115.1S160.5 371.2 224.1 371.2 339.2 319.7 339.2 256.1 287.7 141 224.1 141zm0 186c-39.1 0-71-31.8-71-71s31.8-71 71-71 71 31.8 71 71-31.9 71-71 71zm146.4-194.3c0 14.9-12.1 27-27 27-14.9 0-27-12.1-27-27s12.1-27 27-27 27 12.1 27 27zm76.1 27.2c-1.7-35.3-9.9-66.7-36.2-92.9S388.7 1.7 353.4 0C318.1-1.7 286.7 6.5 260.5 32.8S224.1 61.3 224.1 96.6c0 35.3 8.2 66.7 34.5 92.9s66.7 36.2 102 34.5c35.3-1.7 66.7-9.9 92.9-36.2s34.5-66.7 34.5-102c0-35.3-8.2-66.7-34.5-92.9z"/></svg>
+                vini_xld
+            </a>
+        </div>
+    </div>
+</body>
+</html>
