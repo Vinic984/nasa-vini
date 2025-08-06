@@ -34,29 +34,5 @@ A aplicação foi desenvolvida como uma prova de conceito para demonstrar o cons
 1.  **Python 3** e **pip** instalados.
 2.  Uma **chave de API da NASA**, que pode ser obtida gratuitamente em [https://api.nasa.gov/](https://api.nasa.gov/).
 
-### Passo a Passo
 
-1.  **Navegue até a pasta do projeto** no seu terminal.
-2.  **Ative o ambiente virtual** (caso não esteja ativo):
-    ```bash
-    # Para Windows
-    venv\Scripts\activate
-    ```
-3.  **Instale as dependências** do projeto:
-    ```bash
-    pip install Flask requests python-dotenv googletrans==4.0.0-rc1
-    ```
-4.  **Crie o arquivo `.env`** no diretório principal do projeto e adicione sua chave de API:
-    ```
-    # Conteúdo do arquivo .env
-    NASA_API_KEY="SUA_CHAVE_AQUI"
-    ```
-    Substitua `SUA_CHAVE_AQUI` pela sua chave real da NASA.
-5.  **Execute a aplicação:**
-    ```bash
-    python app.py
-    ```
-    O servidor será iniciado, e o navegador abrirá automaticamente a galeria de imagens. Para encerrar o servidor, pressione `Ctrl + C` no terminal.
-
----
 _Este projeto foi criado como um exercício prático de consumo de API._
